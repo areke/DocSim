@@ -6,7 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public Class utils {
+public class Utils {
 	public static File[] getFiles() {
 		String[] extensions = {"doc", "txt", "docx", "rtf"}
 	    String directory = System.getProperty("user.dir");

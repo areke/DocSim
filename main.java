@@ -1,4 +1,4 @@
-public class main {
+public class Main {
 	public static void main(String[] args) {
 		int length = args.length;
 		if (length <= 0 || length > 2) {
