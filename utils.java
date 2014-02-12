@@ -55,5 +55,17 @@ public Class utils {
 			}
 		}
 		return contents;
-	} 
+	}
+	public static String join(String[] contents) {
+		String content = StringUtils.join(contents, " ");
+	}
+
+	public static String[] join(String[][] contents) {
+		String[] newContents = new String[contents.length];
+		for (int i = 0; i < contents.length; i++) {
+			newContents[i] = join(contents[i]);
+		}
+		return newContents;
+	}
+
 }
