@@ -2,8 +2,13 @@
 //By Mark Klein
 import java.io.*;
 import java.util.HashMap;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public Class utils {
-	public static File[] getFiles(String[] extensions) {
+	public static File[] getFiles() {
+		String[] extensions = {"doc", "txt", "docx", "rtf"}
 	    String directory = System.getProperty("user.dir");
 	    File directoryContents = new File(directory);
 	    File[] filesList = directoryContents.listFiles();
@@ -18,11 +23,37 @@ public Class utils {
 	    }
 	    File[] onlyFiles = new File[num];
 	    for (int i=0; i < num; i++) {
-	    	onlyFiles[i] = files[i]
+	    	onlyFiles[i] = files[i];
 	    }
 	    return onlyFiles;
 	}
-	public static void getFiles (File[] files) {
-
-	}
+	public static String[][] readFiles(File[] files) {
+		//10000 line limit per file
+		String[][] contents = new String[files.length][10000];
+		for (int i = 0; i < files.length; i++) {
+			BufferedReader in = null;
+			try {
+				String line; 
+				in = new BufferedReader(new FileReader(files[i]));
+				int counter = 0;
+				while ((line = in.readLine()) != null) {
+					contents[i][counter] = line;
+				}
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			finally {
+				try {
+					if (in != null) {
+						in.close();
+					}
+				}
+				catch (IOException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		return contents;
+	} 
 }
