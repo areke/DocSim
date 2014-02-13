@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Utils {
+
 	public static File[] getFiles() {
 		String[] extensions = {"doc", "txt", "docx", "rtf"}
 	    String directory = System.getProperty("user.dir");
@@ -27,6 +28,7 @@ public class Utils {
 	    }
 	    return onlyFiles;
 	}
+
 	public static String[][] readFiles(File[] files) {
 		//10000 line limit per file
 		String[][] contents = new String[files.length][10000];
@@ -56,6 +58,7 @@ public class Utils {
 		}
 		return contents;
 	}
+
 	public static String join(String[] contents) {
 		String content = StringUtils.join(contents, " ");
 	}
@@ -66,6 +69,16 @@ public class Utils {
 			newContents[i] = join(contents[i]);
 		}
 		return newContents;
+	}
+
+	public static String removePunctuation(String str) {
+		return str.replaceAll("[^A-Za-z0-9]", "");
+	}
+
+	public static String[] split(String str, int n) {
+
+		String[] strings = java.util.Arrays.toString(s.split("(?<=\\G...)"));
+		return strings
 	}
 
 }
