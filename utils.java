@@ -1,7 +1,8 @@
 //Utils class for DocSim
 //By Mark Klein
 import java.io.*;
-import java.util.HashMap;
+import java.util.Set;
+import java.util.Hashtable;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -101,8 +102,54 @@ public class Utils {
 	* @return       a new string split every nth word
 	*/
 	public static String[] split(String str, int n) {
-		String[] strings = java.util.Arrays.toString(s.split("(?<=\\G...)"));
-		return strings
+		String dots = "";
+		for (int i = 0; i < n; i++) {
+			dots += ".";
+		}
+		String[] strings = java.util.Arrays.toString(s.split("(?<=\\G"+n+")"));
+		return strings;
+	}
+
+	public static Hashtable<String, Integer> createHash(String[] contents) {
+		Hashtable<String, Integer> numbers = new Hashtable<String, Integer>();
+		for (int i = 0; i < contents.length; i++) {
+			String key = contents[i];
+			if (numbers.containsKey(key)) {
+				numbers.put(key, numbers.get(key) + 1);
+			}
+			else {
+				numbers.put(key, 1);
+			}
+		}
+		return numbers;
+	}
+
+	public static Hashtable<String, Int> merge(Hashtable<String, int> a, Hashtable<String, int> b) {
+		Hashtable<String, Integer> numbers = new Hashtable<String, Integer>();
+		Set<String> aKeys = a.keySet();
+		Set<String> bKeys = b.keySet();
+		for (String key : aKeys) {
+			int value = aKeys.get(key);
+			numbers.put(key, value);
+		}
+		for (String key : bKeys) {
+			int value = bKeys.get(key);
+			if (!numbers.containsKey(key)) {
+				numbers.put(key, 0);
+			}
+		}
+		return numbers;
+	}
+
+	public static int[] toArray(Hashtable<String, int> a) {
+		int[] numbers = new int[a.size()];
+		Set<String> keys = a.keySet();
+		int counter = 0;
+		for (String key : keys) {
+			int value = keys.get(key);
+			numbers
+
+		}
 	}
 
 
