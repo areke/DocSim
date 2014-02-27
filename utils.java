@@ -106,10 +106,15 @@ public class Utils {
 		for (int i = 0; i < n; i++) {
 			dots += ".";
 		}
-		String[] strings = java.util.Arrays.toString(s.split("(?<=\\G"+n+")"));
+		String[] strings = java.util.Arrays.toString(s.split("(?<=\\G"+dots+")"));
 		return strings;
 	}
 
+	/**
+	* @param contents    the array of strings to be made into a hashtable
+	* @return            a hashtable with each distinct word in contents as a key and the number of times 
+	*                    that word appears as its value
+	*/
 	public static Hashtable<String, Integer> createHash(String[] contents) {
 		Hashtable<String, Integer> numbers = new Hashtable<String, Integer>();
 		for (int i = 0; i < contents.length; i++) {
@@ -124,6 +129,11 @@ public class Utils {
 		return numbers;
 	}
 
+	/**
+	* @param a    a hashtable to be merged
+	* @param b    a hashtable to be merged
+	* @return     the merged hashtable
+	*/
 	public static Hashtable<String, Int> merge(Hashtable<String, int> a, Hashtable<String, int> b) {
 		Hashtable<String, Integer> numbers = new Hashtable<String, Integer>();
 		Set<String> aKeys = a.keySet();
@@ -141,16 +151,25 @@ public class Utils {
 		return numbers;
 	}
 
+	/**
+	* @param a    a hastable of strings with their values
+	* @return     an array of integers
+	*/
 	public static int[] toArray(Hashtable<String, int> a) {
 		int[] numbers = new int[a.size()];
 		Set<String> keys = a.keySet();
 		int counter = 0;
 		for (String key : keys) {
 			int value = keys.get(key);
-			numbers
-
+			numbers[counter] = value;
+			counter++;
 		}
+		return numbers;
+
 	}
 
+	// Move to a different file later 
+	public static String everything(String[][] contents) {
+	}
 
 }
